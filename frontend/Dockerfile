@@ -1,14 +1,12 @@
-FROM nginx:alpine
+FROM nginxinc/nginx-unprivileged:1.27-alpine
 
-# Remove default config
-RUN rm /etc/nginx/conf.d/default.conf
-
-# Copy custom config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy only required files
 COPY index.html /usr/share/nginx/html/
 COPY css /usr/share/nginx/html/css
 COPY js /usr/share/nginx/html/js
 
-EXPOSE 80
+EXPOSE 8080
+
+RUN adduser -D appuser
+
+USER appuser
