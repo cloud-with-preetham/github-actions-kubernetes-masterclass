@@ -27,6 +27,3 @@ COPY --from=builder /app/app .
 # Run binary
 CMD ["./app"]
 
-RUN adduser -D appuser
-
-USER appuser

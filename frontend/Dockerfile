@@ -6,7 +6,3 @@ COPY css /usr/share/nginx/html/css
 COPY js /usr/share/nginx/html/js
 
 EXPOSE 8080
-
-RUN adduser -D appuser
-
-USER appuser

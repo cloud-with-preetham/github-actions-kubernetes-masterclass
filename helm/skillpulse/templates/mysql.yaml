@@ -89,9 +89,6 @@ spec:
         - name: mysql
           image: {{ .Values.mysql.image }}
           imagePullPolicy: IfNotPresent
-          securityContext:
-            runAsNonRoot: true
-            allowPrivilegeEscalation: false
           ports:
             - name: mysql
               containerPort: 3306
