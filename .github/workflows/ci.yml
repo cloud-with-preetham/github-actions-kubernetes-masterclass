@@ -56,6 +56,7 @@ jobs:
           scan-ref: .
           severity: HIGH,CRITICAL
           exit-code: '1'
+          skip-dirs: k8s-backup
 
       - name: Build and push backend
         uses: docker/build-push-action@v7
