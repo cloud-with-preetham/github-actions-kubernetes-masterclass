@@ -1,8 +1,8 @@
 namespace: skillpulse-dev
 
 backend:
-  image:  h4kops/skillpulse-backend:latest
-  replicas: 1
+  image: h4kops/skillpulse-backend:latest
+  replicas: 4
 
 frontend:
   image: h4kops/skillpulse-frontend:04a768439a55ad184ac7a8f525a564fc689f9587
@@ -10,3 +10,8 @@ frontend:
 
 mysql:
   image: mysql:8.4
+
+canary:
+  enabled: true
+  replicas: 1
+  image: h4kops/skillpulse-backend:latest
