@@ -1,139 +1,153 @@
-# SkillPulse DevOps Platform
+# SkillPulse – DevOps Learning Intelligence Platform
 
 ## Overview
 
-This project demonstrates the transformation of a simple application into a production-grade DevOps platform using modern engineering practices.
-
-The system is designed to be reliable, scalable, secure, and fully automated using GitOps and CI/CD principles. It showcases how real-world production systems are built beyond basic deployments.
+SkillPulse is a full-stack application that tracks learning progress while demonstrating a production-grade DevOps platform. The project integrates CI/CD, GitOps, Kubernetes orchestration, security enforcement, and scalable deployment strategies.
 
 ---
 
-## Architecture Summary
+## Situation
 
-The application consists of:
+Modern application delivery requires automation, reliability, and security. Traditional deployment approaches often rely on manual steps, lack consistency across environments, and introduce risk during releases.
 
-- Backend service (Go)
-- Frontend service
-- MySQL database
-
-The deployment pipeline follows:
-
-Developer → GitHub → CI Pipeline → Docker Registry → GitOps Update → Argo CD → Kubernetes Cluster
+This project was developed to simulate a real-world production environment where deployments are automated, secure, and observable.
 
 ---
 
-## Technology Stack
+## Task
 
-- Kubernetes (Kind Cluster)
-- Argo CD (GitOps deployment)
-- Helm (templating and configuration management)
-- GitHub Actions (CI/CD pipeline)
-- Docker (containerization)
-- Prometheus and Grafana (monitoring and observability)
-- Trivy (container security scanning)
+The objective was to design and implement a complete DevOps system that:
 
----
-
-## Key Implementations
-
-### Continuous Integration and Delivery
-
-- Automated Docker image build and push
-- Image tagging using commit SHA
-- GitOps-based deployment updates
-- Fully automated delivery pipeline from code to cluster
+* Supports multi-environment deployments (development, staging, production)
+* Automates build, test, and deployment processes
+* Enforces security checks within the pipeline (DevSecOps)
+* Ensures application reliability and scalability
+* Minimizes manual intervention and reduces deployment time
 
 ---
 
-### GitOps with Argo CD
+## Action
 
-- Auto-sync enabled
-- Self-healing for drift correction
-- Version-controlled deployments
-- Easy rollback using deployment history
+### Application Development
 
----
+* Built a full-stack Skill Tracking application
+* Implemented frontend UI for managing skills and sessions
+* Developed backend APIs using Go
 
-### Multi-Environment Deployment
+### CI/CD Pipeline
 
-Separate environments configured using Helm:
+* Configured GitHub Actions for automated workflows
+* Built and pushed Docker images on every commit
+* Used commit SHA for versioned image tagging
 
-- Development
-- Staging
-- Production
+### GitOps Deployment
 
-Each environment has independent configuration and namespace isolation.
+* Implemented Argo CD for continuous delivery
+* Enabled auto-sync and self-healing capabilities
+* Managed deployments using Helm charts
 
----
+### Infrastructure & Orchestration
 
-### Deployment Reliability
+* Deployed application on Kubernetes (Kind cluster)
+* Created separate namespaces for dev, staging, and production
+* Used Helm for reusable and environment-specific configurations
 
-- Deployment health verification added in CI/CD
-- Kubernetes rollout checks before marking deployments successful
-- Ensures only stable releases are promoted
+### Reliability & Scaling
 
----
+* Implemented Horizontal Pod Autoscaler (HPA)
+* Enabled dynamic scaling based on CPU utilization
+* Added deployment health verification in the CD pipeline
 
-### Autoscaling
+### Deployment Strategy
 
-- Horizontal Pod Autoscaler (HPA) configured
-- CPU-based scaling
-- Minimum: 2 replicas
-- Maximum: 10 replicas
+* Implemented Canary Deployment using NGINX Ingress
+* Enabled controlled traffic shifting to reduce release risk
 
-This allows the system to handle varying load automatically.
+### DevSecOps Implementation
 
----
+* Integrated Trivy for vulnerability scanning
+* Added filesystem scanning for backend and frontend
+* Implemented Kubernetes configuration scanning
+* Enforced security policies:
 
-### Canary Deployment Strategy
+  * Non-root container awareness
+  * Read-only filesystem where applicable
+  * Detection of insecure configurations
+* Configured pipeline to fail on HIGH and CRITICAL vulnerabilities
 
-- Canary deployment implemented in development environment
-- Controlled traffic routing using NGINX ingress
-- Enables safe validation of new releases before full rollout
+### Observability (Design-Ready)
 
----
-
-### Security (DevSecOps)
-
-- Trivy integrated into CI pipeline
-- Vulnerability scanning of container images
-- Identification and remediation of critical issues
-
----
-
-### Observability
-
-- Prometheus for metrics collection
-- Grafana for visualization
-- Enables monitoring of system health and performance
+* Integrated Prometheus for metrics collection
+* Enabled Grafana for visualization
+* Prepared system for AIOps-based insights
 
 ---
 
-### Backup and Data Safety
+## Result
 
-- MySQL backup strategy implemented
-- Ensures data persistence and recovery capability
+* Achieved a fully automated CI/CD pipeline
+* Reduced deployment time significantly
+* Eliminated manual deployment steps
+* Improved system reliability with:
+
+  * Auto-healing (Argo CD)
+  * Autoscaling (HPA)
+  * Safe rollouts (Canary deployment)
+* Strengthened security through DevSecOps enforcement
+* Built a production-style deployment system around a real application
 
 ---
 
-## Outcomes
+## Architecture
 
-- Reduced deployment time through full automation
-- Minimal manual intervention required
-- Improved system reliability with self-healing and autoscaling
-- Safer releases using canary deployment and health checks
-- Increased confidence in production deployments
+Developer → GitHub → GitHub Actions (CI)
+↓
+Docker Build & Push
+↓
+GitOps Manifest Update
+↓
+Argo CD (CD)
+↓
+Kubernetes Cluster
+↓
+Services → Pods → HPA → Canary Routing
+
+---
+
+## Tech Stack
+
+* Frontend: HTML, CSS, JavaScript
+* Backend: Go (Golang)
+* Containerization: Docker
+* CI/CD: GitHub Actions
+* GitOps: Argo CD
+* Orchestration: Kubernetes (Kind)
+* Configuration Management: Helm
+* Security: Trivy
+* Scaling: Horizontal Pod Autoscaler (HPA)
+* Ingress: NGINX Ingress Controller
+
+---
+
+## Key Features
+
+* Multi-environment deployments (Dev / Staging / Production)
+* GitOps-based continuous delivery
+* Automated CI/CD pipeline
+* Canary deployment strategy
+* Horizontal autoscaling
+* DevSecOps security enforcement
+* Deployment health verification
 
 ---
 
 ## Conclusion
 
-This project demonstrates a complete shift from basic deployments to a production-ready DevOps system. It integrates automation, scalability, observability, and security into a unified workflow.
-
-The implementation reflects real-world DevOps practices used in modern cloud-native environments.
+SkillPulse demonstrates how modern DevOps practices can be applied to build a reliable, scalable, and secure application delivery system. The project reflects real-world engineering practices and production-grade deployment patterns.
 
 ---
 
 ## Author
 
-Preetham
+Preetham Pereira
+
