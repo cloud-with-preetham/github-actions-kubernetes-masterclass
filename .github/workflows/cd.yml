@@ -41,3 +41,16 @@ jobs:
             docker image prune -f
 
             docker compose ps
+
+            echo "Waiting for services to become healthy..."
+            sleep 15
+
+            echo "Checking frontend..."
+            curl -f http://localhost || exit 1
+
+            echo "Checking backend health..."
+            curl -f http://localhost:8080/health || exit 1
+
+            echo "Deployment health check passed"
+
+            docker compose ps
