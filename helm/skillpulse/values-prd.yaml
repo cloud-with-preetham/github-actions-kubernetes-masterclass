@@ -1,0 +1,12 @@
+namespace: skillpulse-prd
+
+backend:
+  image: h4kops/skillpulse-backend:latest
+  replicas: 2
+
+frontend:
+  image: h4kops/skillpulse-frontend:latest
+  replicas: 2
+
+mysql:
+  image: mysql:8.4

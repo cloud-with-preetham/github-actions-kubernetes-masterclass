@@ -11,22 +11,41 @@ jobs:
   deploy:
     if: ${{ (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') && vars.DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
+
     steps:
-      - uses: appleboy/ssh-action@v1
+      - name: Deploy to EC2 using Helm
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            if [ ! -d ~/github-actions-kubernetes-masterclass ]; then
-              git clone ${{ github.server_url }}/${{ github.repository }}.git ~/github-actions-kubernetes-masterclass
+            set -e
+
+            APP_DIR="$HOME/github-actions-kubernetes-masterclass"
+
+            if [ ! -d "$APP_DIR" ]; then
+              git clone ${{ github.server_url }}/${{ github.repository }}.git "$APP_DIR"
             fi
-            cd ~/github-actions-kubernetes-masterclass
+
+            cd "$APP_DIR"
             git pull origin main
-            if [ ! -f .env ]; then
-              echo "ERROR: ~/github-actions-kubernetes-masterclass/.env is missing. Create it once with DOCKERHUB_USERNAME and DB credentials."
+
+            if ! command -v kubectl >/dev/null 2>&1; then
+              echo "kubectl is not installed on target server"
               exit 1
             fi
-            docker compose pull
-            docker compose up -d
-            docker image prune -f
+
+            if ! command -v helm >/dev/null 2>&1; then
+              curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+            fi
+
+            helm upgrade --install skillpulse-dev helm/skillpulse \
+              -f helm/skillpulse/values-dev.yaml \
+              -n skillpulse-dev \
+              --create-namespace \
+              --wait \
+              --timeout 5m
+
+            kubectl get pods -n skillpulse-dev
+            helm list -n skillpulse-dev
