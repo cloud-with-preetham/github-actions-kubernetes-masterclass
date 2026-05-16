@@ -48,3 +48,9 @@ jobs:
           git add helm/skillpulse/values-dev.yaml helm/skillpulse/values-stg.yaml helm/skillpulse/values-prd.yaml
           git commit -m "deploy: pin Helm images to ${SHA:0:7}"
           git push
+
+      - name: Deployment health gate note
+        run: |
+          echo "Image tags were updated in Helm values."
+          echo "Argo CD will sync the desired state automatically."
+          echo "Verify rollout in Argo CD: skillpulse-dev / skillpulse-stg / skillpulse-prd"
