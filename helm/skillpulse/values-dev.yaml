@@ -1,7 +1,7 @@
 namespace: skillpulse-dev
 
 backend:
-  image: h4kops/skillpulse-backend:latest
+  image: nginx 
   replicas: 1
 
 frontend:

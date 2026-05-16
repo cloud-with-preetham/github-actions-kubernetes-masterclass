@@ -46,25 +46,24 @@ $EVENTS
 ## Root Cause Summary
 
 REPORT
-
-if echo "$ERRORS" | grep -qi "metrics API"; then
+if echo "$ERRORS" | grep -qi "empty password"; then
 cat >> "$REPORT_FILE" <<REPORT
-The environment had HPA metric collection warnings related to the Kubernetes Metrics API. This usually happens when metrics-server is not installed, not ready, or not configured correctly for a local kind cluster.
-
-REPORT
-elif echo "$ERRORS" | grep -qi "ImagePullBackOff\|ErrImagePull"; then
-cat >> "$REPORT_FILE" <<REPORT
-One or more pods experienced image pull issues. This usually indicates an incorrect image name, missing registry credentials, or unavailable image tag.
+Security risk detected: MySQL is running with an empty root password. This can lead to unauthorized access in production environments.
 
 REPORT
-elif echo "$ERRORS" | grep -qi "CrashLoopBackOff\|panic\|exception"; then
+elif echo "$ERRORS" | grep -qi "self signed"; then
 cat >> "$REPORT_FILE" <<REPORT
-One or more workloads appear unstable and may be repeatedly crashing. Application logs should be inspected for runtime errors, missing environment variables, or failed dependencies.
+Security warning: MySQL is using a self-signed certificate. For production, a trusted certificate authority should be used.
 
 REPORT
 elif echo "$EVENTS" | grep -qi "SuccessfulRescale"; then
 cat >> "$REPORT_FILE" <<REPORT
-The system experienced autoscaling activity. HPA adjusted backend replicas based on CPU utilization, which indicates autoscaling is functioning as expected.
+System experienced autoscaling activity. Backend scaled based on CPU load and stabilized correctly. HPA is functioning as expected.
+
+REPORT
+elif echo "$ERRORS" | grep -qi "metrics API"; then
+cat >> "$REPORT_FILE" <<REPORT
+Historical issue detected: HPA metrics API was unavailable earlier. This has likely been resolved after metrics-server configuration.
 
 REPORT
 else

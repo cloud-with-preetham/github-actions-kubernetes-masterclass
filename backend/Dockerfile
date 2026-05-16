@@ -1,20 +1,28 @@
-# Stage 1: Build
+# ---- Build Stage ----
 FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
 
+# Only copy go mod first (better caching)
+COPY go.mod ./
+RUN go mod download
+
+# Copy rest of code
 COPY . .
-RUN go mod tidy && CGO_ENABLED=0 GOOS=linux go build -o skillpulse .
 
-# Stage 2: Run
-FROM alpine:3.23
+# Build binary
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app .
 
-RUN apk --no-cache add ca-certificates
+# ---- Final Stage ----
+FROM alpine:3.19
 
 WORKDIR /app
 
-COPY --from=builder /app/skillpulse .
+# Install only required packages
+RUN apk add --no-cache ca-certificates
 
-EXPOSE 8080
+# Copy binary only (no source code)
+COPY --from=builder /app/app .
 
-CMD ["./skillpulse"]
+# Run binary
+CMD ["./app"]
