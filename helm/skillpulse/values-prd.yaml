@@ -1,11 +1,11 @@
 namespace: skillpulse-prd
 
 backend:
-  image: h4kops/skillpulse-backend:04a768439a55ad184ac7a8f525a564fc689f9587
+  image: h4kops/skillpulse-backend:411cf0793ea7584dd303f549ae5f035079a34599
   replicas: 2
 
 frontend:
-  image: h4kops/skillpulse-frontend:04a768439a55ad184ac7a8f525a564fc689f9587
+  image: h4kops/skillpulse-frontend:411cf0793ea7584dd303f549ae5f035079a34599
   replicas: 2
 
 mysql:
