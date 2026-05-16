@@ -22,7 +22,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      
+      - name: Scan Backend Image (Trivy)
+        uses: aquasecurity/trivy-action@v0.20.0
+        with:
+          scan-type: fs
+          scan-ref: ./backend
+          severity: HIGH,CRITICAL
+          exit-code: '1'
       - name: Build and push backend
         uses: docker/build-push-action@v7
         with:
@@ -34,6 +41,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
       
+      - name: Scan Frontend Image (Trivy)
+        uses: aquasecurity/trivy-action@v0.20.0
+        with:
+          scan-type: fs
+          scan-ref: ./frontend
+          severity: HIGH,CRITICAL
+          exit-code: '1'
       - name: Build and push frontend
         uses: docker/build-push-action@v7
         with:
