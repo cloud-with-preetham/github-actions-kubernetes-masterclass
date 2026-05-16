@@ -5,7 +5,7 @@ backend:
   replicas: 1
 
 frontend:
-  image: h4kops/skillpulse-frontend:7e48e0aee2822a478d118b3bb0922f04842bb03a
+  image: h4kops/skillpulse-frontend:04a768439a55ad184ac7a8f525a564fc689f9587
   replicas: 1
 
 mysql:
