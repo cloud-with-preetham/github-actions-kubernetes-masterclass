@@ -1,11 +1,11 @@
 namespace: skillpulse-dev
 
 backend:
-  image: h4kops/skillpulse-backend:e06e32d241d03019348d096fe55c3dacca830623
+  image: h4kops/skillpulse-backend:299a489ba1a56c23a37c812aebb4f281500b2240
   replicas: 4
 
 frontend:
-  image: h4kops/skillpulse-frontend:e06e32d241d03019348d096fe55c3dacca830623
+  image: h4kops/skillpulse-frontend:299a489ba1a56c23a37c812aebb4f281500b2240
   replicas: 1
 
 mysql:
@@ -14,4 +14,4 @@ mysql:
 canary:
   enabled: true
   replicas: 1
-  image: h4kops/skillpulse-backend:e06e32d241d03019348d096fe55c3dacca830623
+  image: h4kops/skillpulse-backend:299a489ba1a56c23a37c812aebb4f281500b2240
