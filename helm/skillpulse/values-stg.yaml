@@ -1,11 +1,11 @@
 namespace: skillpulse-stg
 
 backend:
-  image: h4kops/skillpulse-backend:56484a751a75dade56de8efdbc557f32c0948d51
+  image: h4kops/skillpulse-backend:e06e32d241d03019348d096fe55c3dacca830623
   replicas: 1
 
 frontend:
-  image: h4kops/skillpulse-frontend:56484a751a75dade56de8efdbc557f32c0948d51
+  image: h4kops/skillpulse-frontend:e06e32d241d03019348d096fe55c3dacca830623
   replicas: 1
 
 mysql:
