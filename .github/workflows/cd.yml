@@ -29,8 +29,9 @@ jobs:
             fi
 
             cd "$APP_DIR"
-            git pull origin main
-
+            git fetch origin main
+            git reset --hard origin/main
+            
             if [ ! -f .env ]; then
               echo "ERROR: .env file missing on EC2"
               exit 1
@@ -43,14 +44,34 @@ jobs:
             docker compose ps
 
             echo "Waiting for services to become healthy..."
-            sleep 15
+            MAX_ATTEMPTS=30
+            ATTEMPT=1
 
-            echo "Checking frontend..."
-            curl -f http://localhost || exit 1
+            while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+              echo "Health check attempt $ATTEMPT/$MAX_ATTEMPTS"
 
-            echo "Checking backend health..."
-            curl -f http://localhost:8080/health || exit 1
+              FRONTEND_OK=false
+              BACKEND_OK=false
 
-            echo "Deployment health check passed"
+              if curl -fsS http://localhost >/dev/null 2>&1; then
+                FRONTEND_OK=true
+              fi
 
+              if curl -fsS http://localhost:8080/health >/dev/null 2>&1; then
+                BACKEND_OK=true
+              fi
+
+              if [ "$FRONTEND_OK" = true ] && [ "$BACKEND_OK" = true ]; then
+                echo "Deployment health check passed"
+                docker compose ps
+                exit 0
+              fi
+
+              sleep 5
+              ATTEMPT=$((ATTEMPT + 1))
+            done
+
+            echo "Deployment health check failed"
             docker compose ps
+            docker compose logs --tail=80
+            exit 1
