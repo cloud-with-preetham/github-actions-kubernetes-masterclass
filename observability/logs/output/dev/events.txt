@@ -1,0 +1,68 @@
+LAST SEEN   TYPE      REASON                         OBJECT                            MESSAGE
+48m         Normal    Scheduled                      pod/stress-test                   Successfully assigned skillpulse-dev/stress-test to skillpulse-worker2
+48m         Normal    Pulling                        pod/stress-test                   Pulling image "busybox"
+47m         Normal    Started                        pod/stress-test                   Container started
+47m         Normal    Pulled                         pod/stress-test                   Successfully pulled image "busybox" in 6.074s (6.074s including waiting). Image size: 2222002 bytes.
+47m         Normal    Created                        pod/stress-test                   Container created
+44m         Normal    Killing                        pod/stress-test                   Stopping container stress-test
+29m         Normal    Scheduled                      pod/backend-5dc8565df8-6l8pj      Successfully assigned skillpulse-dev/backend-5dc8565df8-6l8pj to skillpulse-worker2
+29m         Normal    Pulled                         pod/backend-5dc8565df8-6l8pj      Container image "trainwithshubham/skillpulse-backend:latest" already present on machine and can be accessed by the pod
+29m         Normal    Started                        pod/backend-5dc8565df8-6l8pj      Container started
+29m         Normal    SuccessfulCreate               replicaset/backend-5dc8565df8     Created pod: backend-5dc8565df8-6l8pj
+29m         Normal    Created                        pod/backend-5dc8565df8-6l8pj      Container created
+29m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-5dc8565df8 from 0 to 1
+29m         Normal    SuccessfulDelete               replicaset/backend-fb779cd7c      Deleted pod: backend-fb779cd7c-hk85w
+29m         Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-fb779cd7c from 1 to 0
+29m         Normal    Killing                        pod/backend-fb779cd7c-hk85w       Stopping container backend
+19m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/backend   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)
+19m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend   failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server could not find the requested resource (get pods.metrics.k8s.io)
+18m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/backend   failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
+18m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/backend   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
+14m         Normal    Pulling                        pod/stress-test                   Pulling image "busybox"
+14m         Normal    Scheduled                      pod/stress-test                   Successfully assigned skillpulse-dev/stress-test to skillpulse-worker
+14m         Normal    Created                        pod/stress-test                   Container created
+14m         Normal    Pulled                         pod/stress-test                   Successfully pulled image "busybox" in 6s (6s including waiting). Image size: 2222002 bytes.
+14m         Normal    Started                        pod/stress-test                   Container started
+13m         Normal    Killing                        pod/stress-test                   Stopping container stress-test
+12m         Normal    Scheduled                      pod/backend-load                  Successfully assigned skillpulse-dev/backend-load to skillpulse-worker
+12m         Normal    Pulling                        pod/backend-load                  Pulling image "busybox"
+12m         Normal    Pulled                         pod/backend-load                  Successfully pulled image "busybox" in 1.663s (1.663s including waiting). Image size: 2222002 bytes.
+12m         Normal    Created                        pod/backend-load                  Container created
+12m         Normal    Started                        pod/backend-load                  Container started
+12m         Normal    Created                        pod/backend-5dc8565df8-8bm2k      Container created
+12m         Normal    SuccessfulCreate               replicaset/backend-5dc8565df8     Created pod: backend-5dc8565df8-ppmzv
+12m         Normal    SuccessfulCreate               replicaset/backend-5dc8565df8     Created pod: backend-5dc8565df8-48kd7
+12m         Normal    SuccessfulCreate               replicaset/backend-5dc8565df8     Created pod: backend-5dc8565df8-8bm2k
+12m         Normal    Started                        pod/backend-5dc8565df8-ppmzv      Container started
+12m         Normal    Created                        pod/backend-5dc8565df8-ppmzv      Container created
+12m         Normal    Pulled                         pod/backend-5dc8565df8-ppmzv      Container image "trainwithshubham/skillpulse-backend:latest" already present on machine and can be accessed by the pod
+12m         Normal    Scheduled                      pod/backend-5dc8565df8-ppmzv      Successfully assigned skillpulse-dev/backend-5dc8565df8-ppmzv to skillpulse-worker2
+12m         Normal    Scheduled                      pod/backend-5dc8565df8-48kd7      Successfully assigned skillpulse-dev/backend-5dc8565df8-48kd7 to skillpulse-worker
+12m         Normal    Started                        pod/backend-5dc8565df8-8bm2k      Container started
+12m         Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-5dc8565df8 from 1 to 4
+12m         Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 4; reason: cpu resource utilization (percentage of request) above target
+12m         Normal    Pulled                         pod/backend-5dc8565df8-8bm2k      Container image "trainwithshubham/skillpulse-backend:latest" already present on machine and can be accessed by the pod
+12m         Normal    Scheduled                      pod/backend-5dc8565df8-8bm2k      Successfully assigned skillpulse-dev/backend-5dc8565df8-8bm2k to skillpulse-worker
+12m         Normal    Started                        pod/backend-5dc8565df8-48kd7      Container started
+12m         Normal    Created                        pod/backend-5dc8565df8-48kd7      Container created
+12m         Normal    Pulled                         pod/backend-5dc8565df8-48kd7      Container image "trainwithshubham/skillpulse-backend:latest" already present on machine and can be accessed by the pod
+9m56s       Normal    Created                        pod/backend-5dc8565df8-fqsk9      Container created
+9m56s       Normal    SuccessfulCreate               replicaset/backend-5dc8565df8     Created pod: backend-5dc8565df8-fqsk9
+9m56s       Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 5; reason: cpu resource utilization (percentage of request) above target
+9m56s       Normal    ScalingReplicaSet              deployment/backend                Scaled up replica set backend-5dc8565df8 from 4 to 5
+9m56s       Normal    Scheduled                      pod/backend-5dc8565df8-fqsk9      Successfully assigned skillpulse-dev/backend-5dc8565df8-fqsk9 to skillpulse-worker2
+9m56s       Normal    Pulled                         pod/backend-5dc8565df8-fqsk9      Container image "trainwithshubham/skillpulse-backend:latest" already present on machine and can be accessed by the pod
+9m56s       Normal    Started                        pod/backend-5dc8565df8-fqsk9      Container started
+9m22s       Normal    Killing                        pod/backend-load                  Stopping container backend-load
+4m41s       Normal    Killing                        pod/backend-5dc8565df8-ppmzv      Stopping container backend
+4m41s       Normal    SuccessfulDelete               replicaset/backend-5dc8565df8     Deleted pod: backend-5dc8565df8-ppmzv
+4m41s       Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-5dc8565df8 from 5 to 4
+4m41s       Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 4; reason: All metrics below target
+3m41s       Normal    SuccessfulDelete               replicaset/backend-5dc8565df8     Deleted pod: backend-5dc8565df8-48kd7
+3m41s       Normal    SuccessfulDelete               replicaset/backend-5dc8565df8     Deleted pod: backend-5dc8565df8-8bm2k
+3m41s       Normal    SuccessfulDelete               replicaset/backend-5dc8565df8     Deleted pod: backend-5dc8565df8-fqsk9
+3m41s       Normal    ScalingReplicaSet              deployment/backend                Scaled down replica set backend-5dc8565df8 from 4 to 1
+3m41s       Normal    Killing                        pod/backend-5dc8565df8-fqsk9      Stopping container backend
+3m41s       Normal    SuccessfulRescale              horizontalpodautoscaler/backend   New size: 1; reason: All metrics below target
+3m41s       Normal    Killing                        pod/backend-5dc8565df8-8bm2k      Stopping container backend
+3m41s       Normal    Killing                        pod/backend-5dc8565df8-48kd7      Stopping container backend
