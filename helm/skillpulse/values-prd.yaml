@@ -10,3 +10,6 @@ frontend:
 
 mysql:
   image: mysql:8.4
+
+canary:
+  enabled: false
